@@ -35,7 +35,8 @@ if (result.IsColliding)
     var collider = result.Collider;
 }
 
-var result2 = Trace3D.Sphere()
+// cached sphere sweep parameters
+var params2 = Trace3D.Sphere()
     .From(GlobalPosition)
     .To(GlobalPosition + Vector3.Forward)
     .Radius(0.5f)
@@ -43,8 +44,13 @@ var result2 = Trace3D.Sphere()
     .HitAreas(true)
     .HitBodies(false)
     .Margin(0.01f)
-    .Mask(1)
-    .Trace();
+    .Mask(1);
+
+var result2 = params2.Trace();
+
+params2 = params2.Radius(0.1f);
+
+result2 = params2.Trace();
 
 if (result2.IsColliding)
 {
