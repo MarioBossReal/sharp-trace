@@ -69,6 +69,12 @@ public struct SphereSweep3D
         return this;
     }
 
+    public SphereSweep3D Margin(float margin)
+    {
+        this.margin = margin;
+        return this;
+    }
+
     public SphereSweep3D Exclude(Rid rid)
     {
         exclusions ??= new();
