@@ -76,6 +76,12 @@ public struct CapsuleSweep2D
         return this;
     }
 
+    public CapsuleSweep2D Margin(float margin)
+    {
+        this.margin = margin;
+        return this;
+    }
+
     public CapsuleSweep2D Exclude(Rid rid)
     {
         exclusions ??= new();
@@ -109,6 +115,7 @@ public struct CapsuleSweep2D
         GlobalShapeCast2D.CollideWithBodies = collideWithBodies;
         GlobalShapeCast2D.CollisionMask = collisionMask;
         GlobalShapeCast2D.MaxResults = maxResults;
+        GlobalShapeCast2D.Margin = margin;
         GlobalShapeCast2D.TraceCapsule(radius, height, out var result);
         return result;
     }

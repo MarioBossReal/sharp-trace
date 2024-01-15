@@ -63,6 +63,12 @@ public struct ShapeSweep2D
         return this;
     }
 
+    public ShapeSweep2D Margin(float margin)
+    {
+        this.margin = margin;
+        return this;
+    }
+
     public ShapeSweep2D Exclude(Rid rid)
     {
         exclusions ??= new();
@@ -102,6 +108,7 @@ public struct ShapeSweep2D
         GlobalShapeCast2D.CollideWithBodies = collideWithBodies;
         GlobalShapeCast2D.CollisionMask = collisionMask;
         GlobalShapeCast2D.MaxResults = maxResults;
+        GlobalShapeCast2D.Margin = margin;
         GlobalShapeCast2D.Trace(shape, out var result);
         return result;
     }
