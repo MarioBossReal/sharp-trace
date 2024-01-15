@@ -69,6 +69,12 @@ public struct BoxSweep3D
         return this;
     }
 
+    public BoxSweep3D Margin(float margin)
+    {
+        this.margin = margin;
+        return this;
+    }
+
     public BoxSweep3D Exclude(Rid rid)
     {
         exclusions ??= new();
