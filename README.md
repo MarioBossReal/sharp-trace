@@ -62,6 +62,8 @@ if (result2.IsColliding)
     for (int i = 0; i < count; i++)
     {
         var collision = collisions[i];
+        var point = collision.Point;
+        // ...
     }
 }
 ```
