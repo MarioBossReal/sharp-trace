@@ -63,6 +63,12 @@ public struct ShapeSweep3D
         return this;
     }
 
+    public ShapeSweep3D Margin(float margin)
+    {
+        this.margin = margin;
+        return this;
+    }
+
     public ShapeSweep3D Exclude(Rid rid)
     {
         exclusions ??= new();
