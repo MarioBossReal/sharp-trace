@@ -115,6 +115,7 @@ public struct CapsuleSweep3D
         GlobalShapeCast3D.CollideWithBodies = collideWithBodies;
         GlobalShapeCast3D.CollisionMask = collisionMask;
         GlobalShapeCast3D.MaxResults = maxResults;
+        GlobalShapeCast3D.Margin = margin;
         GlobalShapeCast3D.TraceCapsule(radius, height, out var result);
         return result;
     }

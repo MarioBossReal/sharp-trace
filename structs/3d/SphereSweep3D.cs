@@ -108,6 +108,7 @@ public struct SphereSweep3D
         GlobalShapeCast3D.CollideWithBodies = collideWithBodies;
         GlobalShapeCast3D.CollisionMask = collisionMask;
         GlobalShapeCast3D.MaxResults = maxResults;
+        GlobalShapeCast3D.Margin = margin;
         GlobalShapeCast3D.TraceSphere(radius, out var result);
         return result;
     }
