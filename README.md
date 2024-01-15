@@ -9,7 +9,7 @@ Build the game.
 Add SharpTrace.cs to your project's autoload and enable it.
 
 ## Usage
-Usage should be pretty self-explanitory. Use the two static classes ```Trace3D``` and ```Trace2D``` for 3D and 2D physics queries respectively.
+Usage should be pretty self-explanatory. Use the two static classes ```Trace3D``` and ```Trace2D``` for 3D and 2D physics queries respectively.
 
 Trace parameters can be cached and then reused / edited then reused.
 
