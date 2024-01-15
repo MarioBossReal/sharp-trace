@@ -76,6 +76,12 @@ public struct CapsuleSweep3D
         return this;
     }
 
+    public CapsuleSweep3D Margin(float margin)
+    {
+        this.margin = margin;
+        return this;
+    }
+
     public CapsuleSweep3D Exclude(Rid rid)
     {
         exclusions ??= new();
