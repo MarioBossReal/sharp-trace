@@ -5,14 +5,17 @@ namespace SharpTrace;
 public sealed partial class GlobalRayCast3D : RayCast3D
 {
     private static RayCast3D _instance;
+    private static GlobalRayCast3D _castedInstance;
 
     public static new bool CollideWithAreas { get => _instance.CollideWithAreas; set => _instance.CollideWithAreas = value; }
     public static new bool CollideWithBodies { get => _instance.CollideWithBodies; set => _instance.CollideWithBodies = value; }
     public static new uint CollisionMask { get => _instance.CollisionMask; set => _instance.CollisionMask = value; }
     public static new bool HitBackFaces { get => _instance.HitBackFaces; set => _instance.HitBackFaces = value; }
     public static new bool HitFromInside { get => _instance.HitFromInside; set => _instance.HitFromInside = value; }
-    public static new Vector3 TargetPosition { get => _instance.TargetPosition; set => _instance.TargetPosition = value; }
     public static Vector3 Origin { get => _instance.GlobalPosition; set => _instance.GlobalPosition = value; }
+    public static Vector3 GlobalTargetPosition { get => _castedInstance._globalTargetPosition; set => _castedInstance._globalTargetPosition = value; }
+
+    private Vector3 _globalTargetPosition;
 
     public override void _Ready()
     {
@@ -26,11 +29,14 @@ public sealed partial class GlobalRayCast3D : RayCast3D
         Enabled = false;
         Basis = Basis.Identity;
         _instance ??= this;
+        _castedInstance ??= this;
     }
 
     public static bool Trace(out TraceResult3D result)
     {
-        result = new TraceResult3D();
+        result = new();
+
+        _instance.TargetPosition = GlobalTargetPosition - Origin;
 
         _instance.ForceRaycastUpdate();
 

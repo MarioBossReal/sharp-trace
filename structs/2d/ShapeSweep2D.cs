@@ -103,7 +103,7 @@ public struct ShapeSweep2D
             GlobalShapeCast2D.AddExceptionRid(exclusions[i]);
 
         GlobalShapeCast2D.Origin = origin;
-        GlobalShapeCast2D.TargetPosition = target;
+        GlobalShapeCast2D.GlobalTargetPosition = target;
         GlobalShapeCast2D.CollideWithAreas = collideWithAreas;
         GlobalShapeCast2D.CollideWithBodies = collideWithBodies;
         GlobalShapeCast2D.CollisionMask = collisionMask;

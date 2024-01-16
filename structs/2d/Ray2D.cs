@@ -81,7 +81,7 @@ public struct Ray2D
             GlobalRayCast2D.AddExceptionRid(exclusions[i]);
 
         GlobalRayCast2D.Origin = origin;
-        GlobalRayCast2D.TargetPosition = target;
+        GlobalRayCast2D.GlobalTargetPosition = target;
         GlobalRayCast2D.CollideWithAreas = collideWithAreas;
         GlobalRayCast2D.CollideWithBodies = collideWithBodies;
         GlobalRayCast2D.CollisionMask = collisionMask;

@@ -5,13 +5,15 @@ namespace SharpTrace;
 public sealed partial class GlobalRayCast2D : RayCast2D
 {
     private static RayCast2D _instance;
-
+    private static GlobalRayCast2D _castedInstance;
     public static new bool CollideWithAreas { get => _instance.CollideWithAreas; set => _instance.CollideWithAreas = value; }
     public static new bool CollideWithBodies { get => _instance.CollideWithBodies; set => _instance.CollideWithBodies = value; }
     public static new uint CollisionMask { get => _instance.CollisionMask; set => _instance.CollisionMask = value; }
     public static new bool HitFromInside { get => _instance.HitFromInside; set => _instance.HitFromInside = value; }
-    public static new Vector2 TargetPosition { get => _instance.TargetPosition; set => _instance.TargetPosition = value; }
     public static Vector2 Origin { get => _instance.GlobalPosition; set => _instance.GlobalPosition = value; }
+    public static Vector2 GlobalTargetPosition { get => _castedInstance._globalTargetPosition; set => _castedInstance._globalTargetPosition = value; }
+
+    private Vector2 _globalTargetPosition;
 
     public override void _Ready()
     {
@@ -25,11 +27,14 @@ public sealed partial class GlobalRayCast2D : RayCast2D
         Enabled = false;
         RotationDegrees = 0;
         _instance ??= this;
+        _castedInstance ??= this;
     }
 
     public static bool Trace(out TraceResult2D result)
     {
         result = new TraceResult2D();
+
+        _instance.TargetPosition = GlobalTargetPosition - Origin;
 
         _instance.ForceRaycastUpdate();
 

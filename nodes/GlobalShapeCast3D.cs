@@ -12,12 +12,14 @@ public sealed partial class GlobalShapeCast3D : ShapeCast3D
     public static new uint CollisionMask { get => _instance.CollisionMask; set => _instance.CollisionMask = value; }
     public static new float Margin { get => _instance.Margin; set => _instance.Margin = value; }
     public static new int MaxResults { get => _instance.MaxResults; set => _instance.MaxResults = value; }
-    public static new Vector3 TargetPosition { get => _instance.TargetPosition; set => _instance.TargetPosition = value; }
     public static Vector3 Origin { get => _instance.GlobalPosition; set => _instance.GlobalPosition = value; }
+    public static Vector3 GlobalTargetPosition { get => _castedInstance._globalTargetPosition; set => _castedInstance._globalTargetPosition = value; }
 
     private BoxShape3D _internalBoxShape;
     private SphereShape3D _internalSphereShape;
     private CapsuleShape3D _internalCapsuleShape;
+
+    private Vector3 _globalTargetPosition;
 
     public override void _Ready()
     {
@@ -42,6 +44,8 @@ public sealed partial class GlobalShapeCast3D : ShapeCast3D
     public static bool Trace(out SweepResult3D result)
     {
         result = new();
+
+        _instance.TargetPosition = GlobalTargetPosition - Origin;
 
         _instance.ForceShapecastUpdate();
 

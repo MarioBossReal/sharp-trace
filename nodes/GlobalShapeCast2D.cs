@@ -12,12 +12,14 @@ public sealed partial class GlobalShapeCast2D : ShapeCast2D
     public static new uint CollisionMask { get => _instance.CollisionMask; set => _instance.CollisionMask = value; }
     public static new float Margin { get => _instance.Margin; set => _instance.Margin = value; }
     public static new int MaxResults { get => _instance.MaxResults; set => _instance.MaxResults = value; }
-    public static new Vector2 TargetPosition { get => _instance.TargetPosition; set => _instance.TargetPosition = value; }
     public static Vector2 Origin { get => _instance.GlobalPosition; set => _instance.GlobalPosition = value; }
+    public static Vector2 GlobalTargetPosition { get => _castedInstance._globalTargetPosition; set => _castedInstance._globalTargetPosition = value; }
 
     private RectangleShape2D _internalRectangleShape;
     private CircleShape2D _internalCircleShape;
     private CapsuleShape2D _internalCapsuleShape;
+
+    private Vector2 _globalTargetPosition;
 
     public override void _Ready()
     {
@@ -42,6 +44,8 @@ public sealed partial class GlobalShapeCast2D : ShapeCast2D
     public static bool Trace(out SweepResult2D result)
     {
         result = new();
+
+        _instance.TargetPosition = GlobalTargetPosition - Origin;
 
         _instance.ForceShapecastUpdate();
 

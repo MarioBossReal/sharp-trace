@@ -88,7 +88,7 @@ public struct Ray3D
             GlobalRayCast3D.AddExceptionRid(exclusions[i]);
 
         GlobalRayCast3D.Origin = origin;
-        GlobalRayCast3D.TargetPosition = target;
+        GlobalRayCast3D.GlobalTargetPosition = target;
         GlobalRayCast3D.CollideWithAreas = collideWithAreas;
         GlobalRayCast3D.CollideWithBodies = collideWithBodies;
         GlobalRayCast3D.CollisionMask = collisionMask;
