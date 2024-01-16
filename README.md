@@ -50,9 +50,9 @@ var result2 = params2.Trace();
 
 params2 = params2.Radius(0.1f);
 
-result2 = params2.Trace();
+var result3 = params2.Trace();
 
-if (result2.IsColliding)
+if (result3.IsColliding)
 {
     var collisions = result2.Collisions;
     var count = result2.CollisionCount;
