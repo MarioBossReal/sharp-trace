@@ -57,6 +57,8 @@ public sealed partial class GlobalShapeCast3D : ShapeCast3D
         result.CollisionCount = _instance.GetCollisionCount();
         result.SafeFraction = _instance.GetClosestCollisionSafeFraction();
         result.UnsafeFraction = _instance.GetClosestCollisionUnsafeFraction();
+        result.SafeEndPoint = Origin + (result.SafeFraction * _instance.TargetPosition);
+        result.UnsafeEndPoint = Origin + (result.UnsafeFraction * _instance.TargetPosition);
 
         var traceResults = new TraceResult3D[result.CollisionCount];
 
