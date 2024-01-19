@@ -50,9 +50,16 @@ public sealed partial class GlobalShapeCast3D : ShapeCast3D
         _instance.ForceShapecastUpdate();
 
         result.IsColliding = _instance.IsColliding();
+        result.Origin = Origin;
 
         if (!result.IsColliding)
+        {
+            result.SafeFraction = 1;
+            result.UnsafeFraction = 1;
+            result.SafeEndPoint = GlobalTargetPosition;
+            result.UnsafeEndPoint = GlobalTargetPosition;
             return false;
+        }
 
         result.CollisionCount = _instance.GetCollisionCount();
         result.SafeFraction = _instance.GetClosestCollisionSafeFraction();

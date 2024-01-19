@@ -10,4 +10,5 @@ public struct TraceResult3D
     public int ColliderShape;
     public Vector3 Normal;
     public Vector3 Point;
+    public Vector3 Origin;
 }

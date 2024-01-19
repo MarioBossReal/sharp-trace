@@ -41,9 +41,14 @@ public sealed partial class GlobalRayCast3D : RayCast3D
         _instance.ForceRaycastUpdate();
 
         result.IsColliding = _instance.IsColliding();
+        result.Origin = Origin;
 
         if (!result.IsColliding)
+        {
+            result.Normal = Vector3.Zero;
+            result.Point = GlobalTargetPosition;
             return false;
+        }
 
         result.Collider = _instance.GetCollider();
         result.ColliderRid = _instance.GetColliderRid();
@@ -56,8 +61,8 @@ public sealed partial class GlobalRayCast3D : RayCast3D
 
     public static bool Trace(Vector3 origin, Vector3 target, out TraceResult3D result)
     {
-        _instance.GlobalPosition = origin;
-        _instance.TargetPosition = target;
+        Origin = origin;
+        GlobalTargetPosition = target;
 
         return Trace(out result);
     }
