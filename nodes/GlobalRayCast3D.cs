@@ -36,7 +36,7 @@ public sealed partial class GlobalRayCast3D : RayCast3D
     {
         result = new();
 
-        _instance.TargetPosition = GlobalTargetPosition - Origin;
+        _instance.TargetPosition = _instance.ToLocal(GlobalTargetPosition);
 
         _instance.ForceRaycastUpdate();
 

@@ -34,7 +34,7 @@ public sealed partial class GlobalRayCast2D : RayCast2D
     {
         result = new TraceResult2D();
 
-        _instance.TargetPosition = GlobalTargetPosition - Origin;
+        _instance.TargetPosition = _instance.ToLocal(GlobalTargetPosition);
 
         _instance.ForceRaycastUpdate();
 

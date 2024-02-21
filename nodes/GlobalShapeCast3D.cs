@@ -45,7 +45,7 @@ public sealed partial class GlobalShapeCast3D : ShapeCast3D
     {
         result = new();
 
-        _instance.TargetPosition = GlobalTargetPosition - Origin;
+        _instance.TargetPosition = _instance.ToLocal(GlobalTargetPosition);
 
         _instance.ForceShapecastUpdate();
 
@@ -64,8 +64,12 @@ public sealed partial class GlobalShapeCast3D : ShapeCast3D
         result.CollisionCount = _instance.GetCollisionCount();
         result.SafeFraction = _instance.GetClosestCollisionSafeFraction();
         result.UnsafeFraction = _instance.GetClosestCollisionUnsafeFraction();
-        result.SafeEndPoint = Origin + (result.SafeFraction * _instance.TargetPosition);
-        result.UnsafeEndPoint = Origin + (result.UnsafeFraction * _instance.TargetPosition);
+
+        var localSafe = Vector3.Zero.Lerp(_instance.TargetPosition, result.SafeFraction);
+        var localUnsafe = Vector3.Zero.Lerp(_instance.TargetPosition, result.UnsafeFraction);
+
+        result.SafeEndPoint = _instance.ToGlobal(localSafe);
+        result.UnsafeEndPoint = _instance.ToGlobal(localUnsafe);
 
         var traceResults = new TraceResult3D[result.CollisionCount];
 
